@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>عرض بيانات الطالب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* أنماط مخصصة لصفحة العرض */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #e6f2ff 0%, #cce0ff 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideIn 0.6s ease-out forwards;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .data-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: linear-gradient(145deg, #ffffff 0%, #f0f7ff 100%);
+            border-left: 5px solid #0066cc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .data-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.2);
+        }
+
+        .data-title {
+            font-size: 1.6em;
+            color: #003366;
+            padding: 12px 0;
+            border-bottom: 2px solid #0066cc;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .data-title::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #0066cc;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .data-item {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0, 102, 204, 0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .data-label {
+            font-size: 1.1em;
+            color: #336699;
+            font-weight: 500;
+        }
+
+        .data-value {
+            font-size: 1.1em;
+            color: #003366;
+            padding-right: 15px;
+            text-align: left;
+        }
+
+        .highlight {
+            color: #0066cc;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .highlight::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: currentColor;
+            opacity: 0.3;
+        }
+
+        /* زر العودة */
+        .back-btn {
+            background: linear-gradient(135deg, #0066cc 0%, #004d99 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+            margin: 30px auto;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1.1em;
+        }
+
+        .back-btn::before {
+            content: "←";
+            font-size: 1.2em;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+            background: linear-gradient(135deg, #004d99 0%, #0066cc 100%);
+        }
+
+        .back-btn:hover::before {
+            transform: translateX(-5px);
+        }
+
+        h1 {
+            color: #003366;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 2.2em;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 4px;
+            background: #0066cc;
+            border-radius: 2px;
+        }
+
+        .header-image {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header-image img {
+            width: 120px;
+            height: auto;
+        }
+
+        .section-icon {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+        }
+
+        /* تحسينات للجوال */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .data-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .data-label {
+                flex: 1;
+                font-size: 0.95em;
+            }
+
+            .data-value {
+                width: 100%;
+                padding-right: 0;
+            }
+
+            .back-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .section-icon {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header-image">
+            <img src="https://cdn-icons-png.flaticon.com/512/3976/3976626.png" alt="شعار الجامعة">
+        </div>
+        
+        <h1>بيانات الطالب المسجلة</h1>
+
+        <div class="data-card">
+            <div class="data-title">
+                <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" class="section-icon" alt="معلومات شخصية">
+                المعلومات الشخصية
+            </div>
+            <div class="data-item">
+                <span class="data-label">الاسم الكامل:</span>
+                <span class="data-value highlight" id="dFullName"></span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">اسم الأب والأم:</span>
+                <span class="data-value" id="dParentsName"></span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">الجنس:</span>
+                <span class="data-value" id="dGender"></span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">الرقم الجامعي:</span>
+                <span class="data-value highlight" id="dStudentId"></span>
+            </div>
+        </div>
+
+        <div class="data-card">
+            <div class="data-title">
+                <img src="https://cdn-icons-png.flaticon.com/512/3059/3059518.png" class="section-icon" alt="معلومات اتصال">
+                معلومات الاتصال
+            </div>
+            <div class="data-item">
+                <span class="data-label">رقم الهاتف:</span>
+                <span class="data-value" id="dPhone"></span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">البريد الإلكتروني:</span>
+                <span class="data-value highlight" id="dEmail"></span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">العنوان:</span>
+                <span class="data-value" id="dAddress"></span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">المدينة:</span>
+                <span class="data-value" id="dCity"></span>
+            </div>
+        </div>
+
+        <div class="data-card">
+            <div class="data-title">
+                <img src="https://cdn-icons-png.flaticon.com/512/3976/3976626.png" class="section-icon" alt="معلومات دراسية">
+                المعلومات الدراسية
+            </div>
+            <div class="data-item">
+                <span class="data-label">الفرع الدراسي:</span>
+                <span class="data-value highlight" id="dMajor"></span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">المعدل الجامعي:</span>
+                <span class="data-value" id="dGPA"></span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">معدل الثانوية:</span>
+                <span class="data-value" id="dHighSchoolGPA"></span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">مصدر الشهادة:</span>
+                <span class="data-value" id="dCertificateSource"></span>
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="window.location.href='HW2.html'">
+            العودة إلى النموذج
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const data = JSON.parse(localStorage.getItem('studentData'));
+
+            if (data) {
+                document.getElementById('dFullName').textContent = data.fullName;
+                document.getElementById('dParentsName').textContent = data.parentsName;
+                document.getElementById('dGender').textContent = data.gender;
+                document.getElementById('dStudentId').textContent = data.studentId;
+                document.getElementById('dPhone').textContent = data.phone;
+                document.getElementById('dEmail').textContent = data.email;
+                document.getElementById('dAddress').textContent = data.address;
+                document.getElementById('dCity').textContent = data.city;
+                document.getElementById('dMajor').textContent = data.major;
+                document.getElementById('dGPA').textContent = data.gpa;
+                document.getElementById('dHighSchoolGPA').textContent = data.highSchoolGPA;
+                document.getElementById('dCertificateSource').textContent = data.certificateSource || 'غير محدد';
+            }
+        });
+    </script>
+</body>
+
+</html>

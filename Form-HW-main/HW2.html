@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>نموذج تسجيل طالب جامعي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* أنماط مخصصة للنموذج */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #e6f2ff 0%, #cce0ff 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideIn 0.6s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-image {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header-image img {
+            width: 120px;
+            height: auto;
+        }
+
+        .block {
+            background: linear-gradient(145deg, #ffffff 0%, #f0f7ff 100%);
+            border-left: 5px solid #0066cc;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.2);
+        }
+
+        h1 {
+            color: #003366;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 2.2em;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 4px;
+            background: #0066cc;
+            border-radius: 2px;
+        }
+
+        h2 {
+            color: #003366;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 10px;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 25px;
+            height: 25px;
+        }
+
+        .form-row {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        label {
+            flex: 0 0 180px;
+            font-weight: 500;
+            color: #336699;
+            font-size: 1.1em;
+        }
+
+        input,
+        select,
+        textarea {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid rgba(0, 102, 204, 0.3);
+            border-radius: 5px;
+            font-size: 1em;
+            font-family: 'Tajawal', sans-serif;
+            transition: border 0.3s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #0066cc 0%, #004d99 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+            background: linear-gradient(135deg, #004d99 0%, #0066cc 100%);
+        }
+
+        .submit-btn::after {
+            content: "→";
+            font-size: 1.2em;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover::after {
+            transform: translateX(5px);
+        }
+
+        .small-input {
+            max-width: 200px;
+        }
+
+        .clearfix {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* تحسينات للجوال */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            label {
+                flex: 1;
+                width: 100%;
+            }
+
+            input,
+            select,
+            textarea {
+                width: 100%;
+            }
+
+            .small-input {
+                max-width: 100%;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .section-icon {
+                width: 22px;
+                height: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header-image">
+            <img src="https://cdn-icons-png.flaticon.com/512/3976/3976626.png" alt="شعار الجامعة">
+        </div>
+        
+        <h1>نموذج تسجيل الطالب الجامعي</h1>
+
+        <div class="block">
+            <h2>
+                <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" class="section-icon" alt="معلومات شخصية">
+                المعلومات الشخصية
+            </h2>
+            <div class="form-row">
+                <label for="fullName">الاسم الكامل:</label>
+                <input type="text" id="fullName" required>
+            </div>
+            <div class="form-row">
+                <label for="parentsName">اسم الأب والأم:</label>
+                <input type="text" id="parentsName" required>
+            </div>
+            <div class="form-row">
+                <label for="gender">الجنس:</label>
+                <select id="gender" required>
+                    <option value="ذكر">ذكر</option>
+                    <option value="أنثى">أنثى</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="studentId">الرقم الجامعي:</label>
+                <input type="number" id="studentId" class="small-input" required>
+            </div>
+        </div>
+
+        <div class="block">
+            <h2>
+                <img src="https://cdn-icons-png.flaticon.com/512/3059/3059518.png" class="section-icon" alt="معلومات اتصال">
+                معلومات الاتصال
+            </h2>
+            <div class="form-row">
+                <label for="phone">رقم الهاتف:</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-row">
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-row">
+                <label for="address">العنوان التفصيلي:</label>
+                <textarea id="address" rows="3"></textarea>
+            </div>
+            <div class="form-row">
+                <label for="city">البلد والمدينة:</label>
+                <input type="text" id="city" required>
+            </div>
+        </div>
+
+        <div class="block">
+            <h2>
+                <img src="https://cdn-icons-png.flaticon.com/512/3976/3976626.png" class="section-icon" alt="معلومات دراسية">
+                معلومات الدراسة
+            </h2>
+            <div class="form-row">
+                <label for="major">الفرع الدراسي:</label>
+                <input type="text" id="major" required>
+            </div>
+            <div class="form-row">
+                <label for="gpa">المعدل الإجمالي:</label>
+                <input type="number" step="0.01" id="gpa" class="small-input" required min="0" max="4">
+            </div>
+            <div class="form-row">
+                <label for="highSchoolGPA">معدل الثانوية:</label>
+                <input type="number" step="0.01" id="highSchoolGPA" class="small-input" required min="0" max="100">
+            </div>
+            <div class="form-row">
+                <label for="certificateSource">مصدر الشهادة الثانية:</label>
+                <input type="text" id="certificateSource">
+            </div>
+
+            <div class="clearfix">
+                <button class="submit-btn" onclick="saveData()">تسجيل البيانات</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function saveData() {
+            const studentData = {
+                fullName: document.getElementById('fullName').value,
+                parentsName: document.getElementById('parentsName').value,
+                gender: document.getElementById('gender').value,
+                studentId: document.getElementById('studentId').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                major: document.getElementById('major').value,
+                gpa: document.getElementById('gpa').value,
+                highSchoolGPA: document.getElementById('highSchoolGPA').value,
+                certificateSource: document.getElementById('certificateSource').value
+            };
+
+            // التحقق من صحة البيانات قبل الحفظ
+            if (!validateData(studentData)) {
+                return;
+            }
+
+            localStorage.setItem('studentData', JSON.stringify(studentData));
+            window.location.href = 'display.html';
+        }
+
+        function validateData(data) {
+            // التحقق من أن جميع الحقول المطلوبة مملوءة
+            const requiredFields = ['fullName', 'parentsName', 'studentId', 'phone', 'email', 'city', 'major', 'gpa', 'highSchoolGPA'];
+            for (const field of requiredFields) {
+                if (!data[field] || data[field].toString().trim() === '') {
+                    alert(`الرجاء تعبئة حقل ${getFieldName(field)}`);
+                    document.getElementById(field).focus();
+                    return false;
+                }
+            }
+
+            // التحقق من صحة البريد الإلكتروني
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                alert('الرجاء إدخال بريد إلكتروني صحيح');
+                document.getElementById('email').focus();
+                return false;
+            }
+
+            // التحقق من نطاق المعدلات
+            if (data.gpa < 0 || data.gpa > 4) {
+                alert('المعدل الجامعي يجب أن يكون بين 0 و 4');
+                document.getElementById('gpa').focus();
+                return false;
+            }
+
+            if (data.highSchoolGPA < 0 || data.highSchoolGPA > 100) {
+                alert('معدل الثانوية يجب أن يكون بين 0 و 100');
+                document.getElementById('highSchoolGPA').focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        function getFieldName(fieldId) {
+            const fieldNames = {
+                'fullName': 'الاسم الكامل',
+                'parentsName': 'اسم الأب والأم',
+                'studentId': 'الرقم الجامعي',
+                'phone': 'رقم الهاتف',
+                'email': 'البريد الإلكتروني',
+                'city': 'البلد والمدينة',
+                'major': 'الفرع الدراسي',
+                'gpa': 'المعدل الإجمالي',
+                'highSchoolGPA': 'معدل الثانوية'
+            };
+            return fieldNames[fieldId] || fieldId;
+        }
+    </script>
+</body>
+
+</html>
